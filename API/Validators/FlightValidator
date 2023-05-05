@@ -1,0 +1,55 @@
+METHOD flightsListRequestValidator
+    Input: The JSON of the Request body with the fields: departureCity, departureCountry, arrivalCity, arrivalCountry, timeWindowLeft, timeWindowRight
+
+    Output: True if fields values are valid, else False when it fails the validation process
+
+    COMPUTE
+        - Check that the departureCity value is a String.
+            RETURN False if not a String.
+        - Check that the departureCity value is NOT longer than 127 characters.
+            RETURN False if longer than 127 characters.
+        - Check that the departureCity string does not contain numbers nor special characters ignoring spaces.
+            RETURN False if it contains numbers or special characters.
+
+        - Check that the departureCountry value is a String.
+            RETURN False if not a String.
+        - Check that the departureCountry value is NOT longer than 127 characters.
+            RETURN False if longer than 127 characters.
+        - Check that the departureCountry string does not contain numbers nor special characters ignoring spaces.
+            RETURN False if it contains numbers or special characters.
+
+        - Check that the arrivalCity value is a String.
+            RETURN False if not a String.
+        - Check that the arrivalCity value is NOT longer than 127 characters.
+            RETURN False if longer than 127 characters.
+        - Check that the arrivalCity string does not contain numbers nor special characters ignoring spaces.
+            RETURN False if it contains numbers or special characters.
+
+        - Check that the arrivalCountry value is a String.
+            RETURN False if not a String.
+        - Check that the arrivalCountry value is NOT longer than 127 characters.
+            RETURN False if longer than 127 characters.
+        - Check that the arrivalCountry string does not contain numbers nor special characters ignoring spaces.
+            RETURN False if it contains numbers or special characters.
+        
+        - Check that the timeWindowLeft value is a String.
+            RETURN False if not a String.
+        - Check that the timeWindowLeft value is NOT longer than 200 characters.
+            RETURN False if longer than 200 characters.
+        - Check that the timeWindowLeft value is valid date.
+            RETURN False if not a valid date.
+        - Check that the timeWindowLeft value is greater than or equal to today.
+            RETURN False if less than today's date.
+
+        - Check that the timeWindowRight value is a String.
+            RETURN False if not a String.
+        - Check that the timeWindowRight value is NOT longer than 200 characters.
+            RETURN False if longer than 200 characters.
+        - Check that the timeWindowRight value is valid date.
+            RETURN False if not a valid date.
+        - Check that the timeWindowRight value is greater than or equal to today.
+            RETURN False if less than today's date.
+        - Check that the timeWindowRight value is greater than or equal to timeWindowLeft.
+            RETURN False if less than timeWindowRight date.
+        
+        RETURN True
