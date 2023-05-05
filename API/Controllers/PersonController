@@ -1,0 +1,25 @@
+METHOD createPerson
+    Input: names, surnames, govIdNum, govIdType, email, birthdate, phoneNumber, nationality
+
+    Output: JSON Response with Status Code.
+
+    COMPUTE
+        - Perform personStoreValidator method.
+            IF govIdNum value is already present on the DB THEN
+                RETURN JSON Response with Status Code 409
+            ENDIF
+            IF email value is already present on the DB THEN
+                RETURN JSON Response with Status Code 409 
+            ENDIF
+            IF phoneNumber value is already present on the DB THEN
+                RETURN JSON Response with Status Code 409 
+            ENDIF
+        - Send SQL INSERT script to the DB server with the fields: names, surnames, govIdNum, govIdType, email, birthdate, phoneNumber, nationality
+            IF the DB server returns no errors THEN
+                RETURN JSON Response with Status Code 201. Also include inside the body ONLY the fields: personId, names, surnames, govIdNum, email, phoneNumber
+            ELSE
+                RETURN JSON Response with Status Code 500
+            ENDIF
+
+
+
