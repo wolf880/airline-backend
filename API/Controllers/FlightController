@@ -1,0 +1,29 @@
+METHOD listFlights
+    Input: departureCity, departureCountry, arrivalCity, arrivalCountry, timeWindowLeft, timeWindowRight
+
+    Output: JSON Response with a collection of flight objects.
+
+    COMPUTE
+        - Perform flightsListRequestValidator method.
+            IF flightsListRequestValidator is False THEN
+                RETURN JSON Response with Status Code 422
+            ENDIF
+        - Prepare SQL script string 
+            SELECT f.flightNumber, f.departureTime, f.arrivalTime
+            FROM t_flight f
+            WHERE f.departureCity = '<departureCity>'
+            AND f.departureCountry = '<departureCountry>'
+            AND f.arrivalCity = '<arrivalCity>'
+            AND f.arrivalCountry = '<arrivalCountry>'
+            AND f.departureTime BETWEEN '<timeWindowLeft>' AND '<timeWindowRight>';
+        - Send SQL SELECT script to the database server and await response.
+        IF response is empty THEN
+            RETURN JSON Response with a body equal to {} with a Status Code 200
+        ELSE IF response is an Internal Error THEN
+            RETURN JSON Response with a Status Code 500
+        ELSE
+            RETURN JSON Response with a body filled with the flights with a Status Code 200
+        ENDIF
+
+
+
